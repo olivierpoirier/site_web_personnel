@@ -1,100 +1,86 @@
-# Portfolio Genius Template
+# Portfolio Olivier Poirier
 
-Un portfolio web responsive en HTML/CSS/JavaScript pur, pensé pour être dupliqué rapidement pour plusieurs développeurs.
+Site professionnel statique construit avec Vite et des composants JavaScript légers.
 
-## Ce que ça contient
+## Démarrage
 
-- Une page d'accueil avec hero animé
-- Bio
-- Compétences
-- Projets web avec liens
-- Section YouTube pour projets non hostés
-- Contacts toujours disponibles
-- Menu mobile
-- Mode sombre / clair
-- Animations subtiles
-- Données centralisées dans `data.js`
-
-## Démarrage rapide
-
-Ouvrez simplement `index.html` dans un navigateur.
-
-Pour un aperçu plus fiable en local, utilisez un petit serveur :
+Installez les dépendances :
 
 ```bash
-npx serve .
+npm.cmd install
 ```
 
-ou avec Python :
+Lancez le site en local :
 
 ```bash
-python -m http.server 8080
+npm.cmd run dev
 ```
 
-Puis ouvrez :
+Vite affichera une adresse locale du type :
 
 ```text
-http://localhost:8080
+http://127.0.0.1:5173/
 ```
 
-## Personnaliser pour Oli, Schneider, etc.
-
-Copiez le dossier et modifiez seulement :
+## Structure
 
 ```text
-data.js
-assets/avatar.svg
+src/
+  components/   Sections, layout et cartes du portfolio
+  data/         Contenu modifiable du site
+  features/     Interactions, animations et thème
+  styles/       CSS global
+  utils/        Helpers HTML, liens et URLs
+assets/         Images sources importées par Vite
+public/media/   Médias publics des projets
 ```
 
-Dans `data.js`, changez :
+## Modifier le contenu
 
-- `person`
-- `hero`
-- `bio`
-- `skills`
-- `projects`
-- `videos.playlistId`
-- `contactPitch`
-
-## Playlist YouTube
-
-Dans `data.js`, remplacez :
-
-```js
-playlistId: "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"
-```
-
-par l'identifiant de la playlist YouTube.
-
-Exemple :
+Le texte, les projets, les compétences, les liens et les coordonnées sont dans :
 
 ```text
-https://www.youtube.com/playlist?list=MON_PLAYLIST_ID
+src/data/portfolio.js
 ```
 
-L'identifiant est la partie après `list=`.
+Les captures, GIFs et vidéos de projets vont dans :
 
-## Ajouter un projet
+```text
+public/media/projects/
+```
 
-Dans `data.js`, ajoutez un objet dans `projects` :
+Chaque projet peut ensuite référencer un média principal, une courte galerie, des points forts et des liens :
 
 ```js
 {
   title: "Nom du projet",
-  date: "Mars 2026",
-  description: "Courte description.",
-  url: "https://exemple.com",
-  tags: ["WordPress", "SEO", "API"]
+  featured: true,
+  media: {
+    type: "image",
+    src: "/media/projects/demo.gif",
+    alt: "Démo du projet"
+  },
+  gallery: [
+    { type: "image", src: "/media/projects/screenshot.png", alt: "Capture du projet" }
+  ],
+  highlights: ["Point fort 1", "Point fort 2"],
+  links: {
+    live: "https://exemple.com",
+    github: "https://github.com/..."
+  }
 }
 ```
 
-## Déploiement simple
+## Build de production
 
-Vous pouvez héberger ce dossier sur :
+```bash
+npm.cmd run build
+```
 
-- Netlify
-- Vercel
-- GitHub Pages
-- Un hébergement cPanel classique
+Le site optimisé sera généré dans :
 
-Comme c’est statique, c’est léger, rapide, et pas capricieux. Contrairement à certains plugins WordPress un vendredi à 16h58.
+```text
+dist/
+```
+
+Vous pouvez ensuite l'héberger sur Vercel, Netlify, GitHub Pages ou tout hébergement statique.
