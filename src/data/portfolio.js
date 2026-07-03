@@ -58,7 +58,7 @@ export const portfolioData = {
       kind: "demonstrated",
       summary: "Interfaces rapides, responsive et animées, avec une attention au détail visuel et à l'expérience mobile.",
       items: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "JavaScript ES6+"],
-      proof: ["Music Bot", "Owl Soundboard", "Swap-it", "Royal LePage"]
+      proof: ["Music Bot", "Owl Soundboard", "Swap-it", "Royal LePage", "synCOS"]
     },
     {
       title: "Temps réel & audio",
@@ -128,6 +128,11 @@ export const portfolioData = {
       links: {
         live: "https://royallepagetendance.ca/"
       },
+      media: {
+        type: "image",
+        src: "/media/projects/royal-lepage-home.png",
+        alt: "Accueil du site Royal LePage Tendance"
+      },
       highlights: ["Portail client", "API Cloud sécurisée", "CI/CD"],
       tags: ["React", "Vite", "Firebase", "Cloud Functions", "API", "Centris", "CI/CD"]
     },
@@ -140,8 +145,30 @@ export const portfolioData = {
       links: {
         live: "https://swap-it.ca/"
       },
+      media: {
+        type: "image",
+        src: "/media/projects/swap-it-home.png",
+        alt: "Accueil de la plateforme Swap-it"
+      },
       highlights: ["Comptes et groupes", "Tirage automatisé", "Temps réel"],
       tags: ["React", "TypeScript", "Firebase Auth", "Firestore", "Cloud Functions", "Vercel"]
+    },
+    {
+      title: "synCOS",
+      eyebrow: "Site d'équipe",
+      date: "2026",
+      description: "Site vitrine de l'équipe synCOS pour présenter les services, les projets et les profils de l'agence avec une identité visuelle cohérente et une navigation bilingue.",
+      url: "https://www.syncos.ca/",
+      links: {
+        live: "https://www.syncos.ca/"
+      },
+      media: {
+        type: "image",
+        src: "/media/projects/syncos-home.png",
+        alt: "Accueil du site synCOS"
+      },
+      highlights: ["Site d'équipe", "Navigation bilingue", "Présentation des services"],
+      tags: ["Site vitrine", "UI/UX", "Responsive", "Bilingue", "Équipe web"]
     },
     {
       title: "Miss Noémie Music Bot",

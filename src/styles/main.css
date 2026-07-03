@@ -11,6 +11,9 @@
   --accent-3: #ffcc70;
   --shadow: 0 24px 90px rgba(0, 0, 0, 0.35);
   --radius: 28px;
+  --page-pad: clamp(22px, 6vw, 92px);
+  --content-max: 1600px;
+  --shell-max: calc(var(--content-max) + var(--page-pad) + var(--page-pad));
   --font-title: "Space Grotesk", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   --header-h: 82px;
@@ -129,7 +132,9 @@ textarea {
 
 .site-header {
   position: fixed;
-  inset: 18px 22px auto;
+  top: 18px;
+  left: 50%;
+  width: min(calc(100% - 44px), var(--shell-max));
   height: 64px;
   z-index: 100;
   display: flex;
@@ -141,6 +146,7 @@ textarea {
   backdrop-filter: blur(18px);
   border-radius: 999px;
   box-shadow: var(--shadow);
+  transform: translateX(-50%);
 }
 
 body.light .site-header {
@@ -259,14 +265,16 @@ body.light .site-header {
 }
 
 .section {
+  width: min(100%, var(--shell-max));
   min-height: 100vh;
-  padding: 130px clamp(22px, 6vw, 92px) 90px;
+  margin-inline: auto;
+  padding: 130px var(--page-pad) 90px;
 }
 
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.8fr);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
   align-items: center;
   gap: clamp(34px, 6vw, 90px);
   padding-bottom: 150px;
@@ -309,9 +317,9 @@ p {
 
 h1 {
   margin-bottom: 22px;
-  font-size: clamp(2.8rem, 7.6vw, 7.4rem);
+  font-size: 5.45rem;
   line-height: 0.9;
-  letter-spacing: -0.065em;
+  letter-spacing: 0;
   max-width: 100%;
   overflow-wrap: break-word;
 }
@@ -332,9 +340,9 @@ h1 em {
 }
 
 h2 {
-  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-size: 3.8rem;
   line-height: 0.95;
-  letter-spacing: -0.055em;
+  letter-spacing: 0;
   margin-bottom: 22px;
 }
 
@@ -351,7 +359,7 @@ h3 {
 .featured-project-card p,
 .project-card p {
   color: var(--muted);
-  font-size: clamp(1.04rem, 1.4vw, 1.25rem);
+  font-size: 1.12rem;
   line-height: 1.65;
 }
 
@@ -455,8 +463,9 @@ body.light .code-bubble {
 
 .tech-marquee {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
+  right: auto;
+  width: 100vw;
   bottom: 54px;
   overflow: hidden;
   border-top: 1px solid var(--line);
@@ -464,6 +473,7 @@ body.light .code-bubble {
   background: rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(14px);
   z-index: 4;
+  transform: translateX(-50%);
 }
 
 .tech-marquee::before,
@@ -498,7 +508,7 @@ body.light .code-bubble {
   padding: 18px 42px;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+  font-size: 0.95rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -593,7 +603,7 @@ body.light .code-bubble {
 
 .skills-band-head h3 {
   margin: 8px 0 0;
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-size: 2rem;
 }
 
 .skills-grid-featured {
@@ -811,7 +821,7 @@ body.light .proof-list strong {
 }
 
 .featured-project-copy h3 {
-  font-size: clamp(2rem, 4vw, 4.25rem);
+  font-size: 3.4rem;
   line-height: 0.96;
   margin-bottom: 16px;
 }
@@ -1063,12 +1073,24 @@ body.light .media-label {
 }
 
 .footer {
+  width: min(100%, var(--shell-max));
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  padding: 28px clamp(22px, 6vw, 92px);
+  margin-inline: auto;
+  padding: 28px var(--page-pad);
   color: var(--muted);
   border-top: 1px solid var(--line);
+}
+
+@media (min-width: 1700px) {
+  h1 {
+    font-size: 6.45rem;
+  }
+
+  h2 {
+    font-size: 4.2rem;
+  }
 }
 
 .reveal {
@@ -1150,6 +1172,10 @@ body.light .media-label {
 }
 
 @media (max-width: 980px) {
+  :root {
+    --content-max: 820px;
+  }
+
   .brand-text small {
     max-width: 180px;
   }
@@ -1198,6 +1224,18 @@ body.light .media-label {
     grid-template-columns: 1fr;
   }
 
+  h1 {
+    font-size: 4.35rem;
+  }
+
+  h2 {
+    font-size: 3.15rem;
+  }
+
+  .featured-project-copy h3 {
+    font-size: 2.8rem;
+  }
+
   .skills-grid,
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1228,9 +1266,24 @@ body.light .media-label {
   }
 }
 
+@media (max-width: 1400px) and (min-width: 981px) {
+  .bubble-one {
+    right: 6px;
+  }
+
+  .bubble-two {
+    left: 6px;
+  }
+}
+
 @media (max-width: 640px) {
+  :root {
+    --page-pad: 18px;
+  }
+
   .site-header {
-    inset: 10px 10px auto;
+    top: 10px;
+    width: calc(100% - 20px);
   }
 
   .brand-text strong {
@@ -1243,7 +1296,7 @@ body.light .media-label {
 
   .section {
     min-height: auto;
-    padding: 110px 18px 70px;
+    padding: 110px var(--page-pad) 70px;
   }
 
   .hero {
@@ -1254,8 +1307,13 @@ body.light .media-label {
   .tech-marquee {
     position: relative;
     grid-column: 1 / -1;
+    left: auto;
+    width: auto;
     margin-top: 42px;
+    margin-right: calc(0px - var(--page-pad));
+    margin-left: calc(0px - var(--page-pad));
     bottom: auto;
+    transform: none;
   }
 
   .tech-marquee-track span {
@@ -1268,13 +1326,26 @@ body.light .media-label {
   }
 
   h1 {
-    font-size: clamp(2.65rem, 14vw, 4.7rem);
+    font-size: 3.25rem;
     line-height: 0.94;
-    letter-spacing: -0.055em;
   }
 
   h2 {
-    font-size: clamp(2rem, 11vw, 3.5rem);
+    font-size: 2.55rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  .hero-text,
+  .section-head p,
+  .content-card p,
+  .video-copy p,
+  .contact-card p,
+  .featured-project-card p,
+  .project-card p {
+    font-size: 1rem;
   }
 
   .hero-actions {
@@ -1283,6 +1354,14 @@ body.light .media-label {
 
   .btn {
     width: 100%;
+  }
+
+  .quick-contact {
+    display: none;
+  }
+
+  .footer {
+    padding-bottom: 28px;
   }
 
   .skills-grid,
@@ -1296,7 +1375,7 @@ body.light .media-label {
   }
 
   .featured-project-copy h3 {
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: 2.25rem;
   }
 
   .media-gallery,
