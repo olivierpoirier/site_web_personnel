@@ -1,4 +1,5 @@
 import { attr, escapeHtml, safeUrl } from "../utils/html.js";
+import { icon } from "./icons.js";
 
 export function tagList(items = []) {
   return `
@@ -136,7 +137,10 @@ export function linkButtons(project) {
       variant: link.variant || "ghost"
     }))
     .filter(link => link.label && link.url !== "#")
-    .map(link => `<a class="btn ${attr(link.variant)} magnetic" href="${attr(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a>`);
+    .map(link => {
+      const iconName = /github|code/i.test(link.label) ? "github" : "external";
+      return `<a class="btn ${attr(link.variant)}" href="${attr(link.url)}" target="_blank" rel="noreferrer">${icon(iconName)}<span>${escapeHtml(link.label)}</span></a>`;
+    });
 
   return buttons.length ? `<div class="project-links">${buttons.join("")}</div>` : "";
 }
@@ -208,11 +212,11 @@ export function projectCard(project, index) {
   const url = safeUrl(project.links?.live || project.links?.github || project.url);
   const hasUrl = url !== "#";
   const action = hasUrl
-    ? `<a class="project-arrow magnetic" href="${attr(url)}" target="_blank" rel="noreferrer" aria-label="Ouvrir ${attr(project.title)}">&#8599;</a>`
+    ? `<a class="project-arrow" href="${attr(url)}" target="_blank" rel="noreferrer" aria-label="Ouvrir ${attr(project.title)}">${icon("external")}</a>`
     : `<span class="project-arrow" aria-hidden="true">&bull;</span>`;
 
   return `
-    <article class="project-card reveal tilt-card" style="--delay:${index * 80}ms">
+    <article class="project-card reveal" style="--delay:${index * 80}ms">
       ${projectMedia(project.media, "card-media")}
 
       <div class="project-top">

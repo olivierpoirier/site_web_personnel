@@ -1,4 +1,5 @@
 import { attr, escapeHtml, safeUrl } from "../utils/html.js";
+import { icon } from "./icons.js";
 import { mailto, tel } from "../utils/links.js";
 
 const navigation = [
@@ -25,7 +26,7 @@ export function backgroundEffects() {
 export function siteHeader(person) {
   return `
     <header class="site-header" data-glass>
-      <a class="brand magnetic" href="#accueil" aria-label="Retour à l'accueil">
+      <a class="brand" href="#accueil" aria-label="Retour à l'accueil">
         <span class="brand-mark">${escapeHtml(person.initials)}</span>
         <span class="brand-text">
           <strong>${escapeHtml(person.name)}</strong>
@@ -33,7 +34,7 @@ export function siteHeader(person) {
         </span>
       </a>
 
-      <button class="menu-toggle magnetic" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -49,10 +50,10 @@ export function siteHeader(person) {
 export function quickContact(person) {
   return `
     <aside class="quick-contact" aria-label="Contacts rapides">
-      <a href="${attr(mailto(person.email))}" title="Écrire un courriel">&#9993;</a>
-      <a href="${attr(tel(person.phone))}" title="Téléphoner">&#9742;</a>
-      <a href="${attr(safeUrl(person.linkedin))}" title="LinkedIn" target="_blank" rel="noreferrer">in</a>
-      <button class="theme-toggle" type="button" title="Changer le thème" aria-label="Changer le thème" aria-pressed="false">&#9679;</button>
+      <a href="${attr(mailto(person.email))}" title="Écrire un courriel" aria-label="Écrire un courriel">${icon("mail")}</a>
+      <a href="${attr(tel(person.phone))}" title="Téléphoner" aria-label="Téléphoner">${icon("phone")}</a>
+      <a href="${attr(safeUrl(person.linkedin))}" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noreferrer">${icon("linkedin")}</a>
+      <a href="${attr(safeUrl(person.website))}" title="GitHub" aria-label="GitHub" target="_blank" rel="noreferrer">${icon("github")}</a>
     </aside>
   `;
 }

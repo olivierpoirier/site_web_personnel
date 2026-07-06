@@ -1,6 +1,7 @@
 import { featuredProjectCard, projectCard, skillCard } from "./cards.js";
 import { attr, escapeHtml, safeUrl } from "../utils/html.js";
 import { displayUrl, getVideoLinks, mailto, tel } from "../utils/links.js";
+import { icon } from "./icons.js";
 
 function sectionHeader(kicker, title, text) {
   return `
@@ -31,13 +32,13 @@ export function heroSection(data) {
         <p class="hero-text">${escapeHtml(data.hero.text)}</p>
 
         <div class="hero-actions">
-          <a class="btn primary magnetic" href="#projets">Voir les projets</a>
-          <a class="btn ghost magnetic" href="#contact">Me contacter</a>
+          <a class="btn primary" href="#projets">${icon("arrowRight")}<span>Voir les projets</span></a>
+          <a class="btn ghost" href="#contact">${icon("mail")}<span>Me contacter</span></a>
         </div>
       </div>
 
       <div class="hero-visual reveal">
-        <div class="portrait-card tilt-card">
+        <div class="portrait-card profile-tilt">
           <div class="portrait-ring"></div>
           <img src="${attr(data.person.avatar)}" alt="Logo ou portrait de ${attr(data.person.name)}" />
 
@@ -134,7 +135,7 @@ export function capturesSection(data) {
           <div class="video-copy">
             <h3>${escapeHtml(data.videos.title)}</h3>
             <p>${escapeHtml(data.videos.description)}</p>
-            <a class="btn ghost magnetic" ${videoButtonAttrs}>${escapeHtml(videoButtonText)}</a>
+            <a class="btn ghost" ${videoButtonAttrs}>${icon("external")}<span>${escapeHtml(videoButtonText)}</span></a>
           </div>
         </div>
       ` : ""}
@@ -208,9 +209,10 @@ export function contactSection(data) {
         <p>${escapeHtml(data.contactPitch)}</p>
 
         <div class="contact-links">
-          <a href="${attr(mailto(data.person.email))}">${escapeHtml(data.person.email)}</a>
-          <a href="${attr(tel(data.person.phone))}">${escapeHtml(data.person.phone)}</a>
-          <a href="${attr(safeUrl(data.person.website))}" target="_blank" rel="noreferrer">${escapeHtml(displayUrl(data.person.website))}</a>
+          <a href="${attr(mailto(data.person.email))}">${icon("mail")}<span>${escapeHtml(data.person.email)}</span></a>
+          <a href="${attr(tel(data.person.phone))}">${icon("phone")}<span>${escapeHtml(data.person.phone)}</span></a>
+          <a href="${attr(safeUrl(data.person.linkedin))}" target="_blank" rel="noreferrer">${icon("linkedin")}<span>LinkedIn</span></a>
+          <a href="${attr(safeUrl(data.person.website))}" target="_blank" rel="noreferrer">${icon("github")}<span>${escapeHtml(displayUrl(data.person.website))}</span></a>
         </div>
       </div>
     </section>

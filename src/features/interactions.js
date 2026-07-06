@@ -7,8 +7,7 @@ export function initInteractions() {
   initMenu();
   initReveal();
   initHashScroll();
-  initTilt();
-  initMagnetic();
+  initProfileTilt();
   initMatrixCanvas();
 }
 
@@ -101,42 +100,26 @@ function initHashScroll() {
   window.addEventListener("hashchange", () => requestAnimationFrame(scrollToHash));
 }
 
-function initTilt() {
+function initProfileTilt() {
   if (reducedMotion()) return;
 
-  $$(".tilt-card").forEach(card => {
-    card.addEventListener("pointermove", event => {
-      const rect = card.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      const rotateX = ((y / rect.height) - 0.5) * -8;
-      const rotateY = ((x / rect.width) - 0.5) * 8;
+  const card = $(".profile-tilt");
+  if (!card) return;
 
-      card.style.setProperty("--rx", `${rotateX}deg`);
-      card.style.setProperty("--ry", `${rotateY}deg`);
-    });
+  card.addEventListener("pointermove", event => {
+    const rect = card.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const rotateX = ((y / rect.height) - 0.5) * -7;
+    const rotateY = ((x / rect.width) - 0.5) * 7;
 
-    card.addEventListener("pointerleave", () => {
-      card.style.setProperty("--rx", "0deg");
-      card.style.setProperty("--ry", "0deg");
-    });
+    card.style.setProperty("--rx", `${rotateX}deg`);
+    card.style.setProperty("--ry", `${rotateY}deg`);
   });
-}
 
-function initMagnetic() {
-  if (reducedMotion()) return;
-
-  $$(".magnetic").forEach(el => {
-    el.addEventListener("pointermove", event => {
-      const rect = el.getBoundingClientRect();
-      const x = event.clientX - rect.left - rect.width / 2;
-      const y = event.clientY - rect.top - rect.height / 2;
-      el.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
-    });
-
-    el.addEventListener("pointerleave", () => {
-      el.style.transform = "translate(0, 0)";
-    });
+  card.addEventListener("pointerleave", () => {
+    card.style.setProperty("--rx", "0deg");
+    card.style.setProperty("--ry", "0deg");
   });
 }
 
@@ -148,7 +131,8 @@ function initMatrixCanvas() {
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
-  const chars = "01{}[]<>/const=>npm.run.build";
+  const tokens = ["01", "10", "api", "ui", "db", "git", "node", "react", "vite", "cloud", "build", "json", "tsx", "</>"];
+  const columnWidth = 54;
   let width = 0;
   let height = 0;
   let drops = [];
@@ -165,22 +149,22 @@ function initMatrixCanvas() {
     canvas.style.height = `${height}px`;
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-    const columns = Math.max(1, Math.floor(width / 18));
+    const columns = Math.max(1, Math.floor(width / columnWidth));
     drops = Array.from({ length: columns }, () => Math.random() * height);
   }
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
     ctx.font = "14px JetBrains Mono, monospace";
-    ctx.fillStyle = document.body.classList.contains("light")
-      ? "rgba(15, 23, 42, 0.07)"
-      : "rgba(183, 255, 245, 0.075)";
+    ctx.fillStyle = document.documentElement.classList.contains("light")
+      ? "rgba(2, 88, 72, 0.14)"
+      : "rgba(113, 255, 214, 0.08)";
 
     drops.forEach((drop, index) => {
-      const char = chars[Math.floor(Math.random() * chars.length)];
-      const x = index * 18;
+      const token = tokens[Math.floor(Math.random() * tokens.length)];
+      const x = index * columnWidth;
 
-      ctx.fillText(char, x, drop);
+      ctx.fillText(token, x, drop);
 
       if (drop > height + Math.random() * 10000) {
         drops[index] = 0;
@@ -217,29 +201,15 @@ function initMatrixCanvas() {
 }
 
 function initTheme() {
-  const themeToggle = $(".theme-toggle");
-  const stored = localStorage.getItem("portfolio-theme");
-
-  if (stored === "light") {
-    document.body.classList.add("light");
-  }
-
-  if (!themeToggle) return;
-
-  const syncButton = () => {
-    const isLight = document.body.classList.contains("light");
-    themeToggle.setAttribute("aria-pressed", String(isLight));
-    themeToggle.title = isLight ? "Passer au thème sombre" : "Passer au thème clair";
+  const themeQuery = window.matchMedia("(prefers-color-scheme: light)");
+  const applySystemTheme = event => {
+    document.documentElement.classList.toggle("light", event.matches);
   };
 
-  syncButton();
-
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("light");
-    localStorage.setItem(
-      "portfolio-theme",
-      document.body.classList.contains("light") ? "light" : "dark"
-    );
-    syncButton();
-  });
+  applySystemTheme(themeQuery);
+  if (themeQuery.addEventListener) {
+    themeQuery.addEventListener("change", applySystemTheme);
+  } else {
+    themeQuery.addListener(applySystemTheme);
+  }
 }

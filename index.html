@@ -12,6 +12,12 @@
 </head>
 
 <body>
+  <script>
+    document.documentElement.classList.toggle(
+      "light",
+      window.matchMedia("(prefers-color-scheme: light)").matches
+    );
+  </script>
   <div id="app"></div>
   <script type="module" src="/src/main.js"></script>
 </body>
