@@ -5,6 +5,13 @@ const icons = {
       <path d="m13 6 6 6-6 6"></path>
     </svg>
   `,
+  code: `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m8 9-4 3 4 3"></path>
+      <path d="m16 9 4 3-4 3"></path>
+      <path d="m14 4-4 16"></path>
+    </svg>
+  `,
   external: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M7 17 17 7"></path>
@@ -29,11 +36,29 @@ const icons = {
       <path d="m5 8 7 5 7-5"></path>
     </svg>
   `,
+  moon: `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.3 14.8A8.2 8.2 0 0 1 9.2 3.7 8.7 8.7 0 1 0 20.3 14.8Z"></path>
+    </svg>
+  `,
   phone: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <rect x="7" y="2.8" width="10" height="18.4" rx="2.6"></rect>
       <path d="M10 5.8h4"></path>
       <path d="M11.7 18h.6"></path>
+    </svg>
+  `,
+  sun: `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2.8v2.4"></path>
+      <path d="M12 18.8v2.4"></path>
+      <path d="m4.3 4.3 1.7 1.7"></path>
+      <path d="m18 18 1.7 1.7"></path>
+      <path d="M2.8 12h2.4"></path>
+      <path d="M18.8 12h2.4"></path>
+      <path d="m4.3 19.7 1.7-1.7"></path>
+      <path d="m18 6 1.7-1.7"></path>
     </svg>
   `
 };

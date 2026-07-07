@@ -292,6 +292,11 @@ export const portfolioData = {
       date: "Concept produit",
       description: "Architecture d'une plateforme de troc local basée sur un formulaire guidé en quatre étapes : type d'échange, catégorie, tags et évaluation en tokens. La logique de matchmaking déclenche une notification lorsque les offres et recherches utilisent les mêmes tags.",
       url: "#",
+      media: {
+        type: "video",
+        src: "/media/projects/troc-local-demo.mp4",
+        alt: "Démo vidéo du prototype Troc local"
+      },
       highlights: ["Formulaire guidé", "Matchmaking", "Évaluation en tokens"],
       tags: ["UX", "UI", "Matchmaking", "Tags", "Tokens", "Base de données", "Architecture produit"]
     },
@@ -301,6 +306,11 @@ export const portfolioData = {
       date: "Concept SaaS",
       description: "SaaS de gestion automatisée des avis pour commerces locaux. Le système envoie un SMS après un rendez-vous ou un paiement, redirige les avis positifs vers Google Business ou Facebook, et intercepte les avis négatifs dans un formulaire privé avec alerte au propriétaire.",
       url: "#",
+      media: {
+        type: "video",
+        src: "/media/projects/starboost-demo.mp4",
+        alt: "Démo vidéo du concept StarBoost"
+      },
       highlights: ["SMS automatisés", "Avis Google Business", "Alerte propriétaire"],
       tags: ["SaaS", "Automatisation", "Twilio", "Node.js", "Python", "SEO local", "API"]
     }

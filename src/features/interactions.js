@@ -8,7 +8,6 @@ export function initInteractions() {
   initReveal();
   initHashScroll();
   initProfileTilt();
-  initMatrixCanvas();
 }
 
 function initMenu() {
@@ -123,93 +122,55 @@ function initProfileTilt() {
   });
 }
 
-function initMatrixCanvas() {
-  const canvas = $("#matrixCanvas");
-
-  if (!canvas || reducedMotion()) return;
-
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  const tokens = ["01", "10", "api", "ui", "db", "git", "node", "react", "vite", "cloud", "build", "json", "tsx", "</>"];
-  const columnWidth = 54;
-  let width = 0;
-  let height = 0;
-  let drops = [];
-  let frameId = 0;
-
-  function resize() {
-    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = Math.floor(width * ratio);
-    canvas.height = Math.floor(height * ratio);
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-    const columns = Math.max(1, Math.floor(width / columnWidth));
-    drops = Array.from({ length: columns }, () => Math.random() * height);
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, width, height);
-    ctx.font = "14px JetBrains Mono, monospace";
-    ctx.fillStyle = document.documentElement.classList.contains("light")
-      ? "rgba(2, 88, 72, 0.14)"
-      : "rgba(113, 255, 214, 0.08)";
-
-    drops.forEach((drop, index) => {
-      const token = tokens[Math.floor(Math.random() * tokens.length)];
-      const x = index * columnWidth;
-
-      ctx.fillText(token, x, drop);
-
-      if (drop > height + Math.random() * 10000) {
-        drops[index] = 0;
-      }
-
-      drops[index] += 0.45;
-    });
-
-    frameId = requestAnimationFrame(draw);
-  }
-
-  function start() {
-    if (!frameId) {
-      frameId = requestAnimationFrame(draw);
-    }
-  }
-
-  function stop() {
-    cancelAnimationFrame(frameId);
-    frameId = 0;
-  }
-
-  resize();
-  start();
-
-  window.addEventListener("resize", resize);
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      stop();
-    } else {
-      start();
-    }
-  });
-}
-
 function initTheme() {
   const themeQuery = window.matchMedia("(prefers-color-scheme: light)");
-  const applySystemTheme = event => {
-    document.documentElement.classList.toggle("light", event.matches);
+  const toggle = $(".theme-toggle");
+  const favicon = document.querySelector("#favicon");
+  const storageKey = "portfolio_theme";
+  let selectedTheme = themeQuery.matches ? "light" : "dark";
+
+  try {
+    const storedTheme = localStorage.getItem(storageKey);
+
+    if (storedTheme === "light" || storedTheme === "dark") {
+      selectedTheme = storedTheme;
+    }
+  } catch (err) {
+    selectedTheme = themeQuery.matches ? "light" : "dark";
+  }
+
+  const applyTheme = () => {
+    const isLight = selectedTheme === "light";
+
+    document.documentElement.classList.toggle("light", isLight);
+
+    if (favicon) {
+      favicon.setAttribute(
+        "href",
+        isLight ? "/media/brand/favicon-sakura-32.png" : "/media/brand/favicon-retrowave-32.png"
+      );
+    }
+
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", String(isLight));
+      toggle.setAttribute("aria-label", isLight ? "Activer le thème nuit" : "Activer le thème sakura");
+      toggle.title = isLight ? "Activer le thème nuit" : "Activer le thème sakura";
+    }
   };
 
-  applySystemTheme(themeQuery);
-  if (themeQuery.addEventListener) {
-    themeQuery.addEventListener("change", applySystemTheme);
-  } else {
-    themeQuery.addListener(applySystemTheme);
+  applyTheme();
+
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      selectedTheme = document.documentElement.classList.contains("light") ? "dark" : "light";
+
+      try {
+        localStorage.setItem(storageKey, selectedTheme);
+      } catch (err) {
+        // The visual toggle should keep working even if storage is unavailable.
+      }
+
+      applyTheme();
+    });
   }
 }

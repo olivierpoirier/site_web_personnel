@@ -98,8 +98,9 @@ export function projectMedia(media, className = "") {
   if (!media?.src) return "";
 
   const label = media.type === "video" ? "Vidéo" : media.src.endsWith(".gif") ? "GIF" : "Capture";
+  const poster = media.poster ? ` poster="${attr(media.poster)}"` : "";
   const body = media.type === "video"
-    ? `<video src="${attr(media.src)}" poster="${attr(media.poster)}" autoplay muted loop playsinline></video>`
+    ? `<video src="${attr(media.src)}"${poster} aria-label="${attr(media.alt)}" autoplay muted loop playsinline></video>`
     : `<img src="${attr(media.src)}" alt="${attr(media.alt)}" loading="lazy" />`;
 
   return `
