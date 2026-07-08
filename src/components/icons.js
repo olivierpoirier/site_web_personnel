@@ -12,6 +12,13 @@ const icons = {
       <path d="m14 4-4 16"></path>
     </svg>
   `,
+  download: `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3v11"></path>
+      <path d="m7 9 5 5 5-5"></path>
+      <path d="M5 19h14"></path>
+    </svg>
+  `,
   external: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M7 17 17 7"></path>

@@ -7,6 +7,7 @@ export const portfolioData = {
     role: "Développeur Web & Applicatif Full-Stack",
     availability: "Disponible pour projets web, applications full-stack et automatisations",
     avatar: avatarUrl,
+    cv: "/cv/Olivier_Poirier_CV.docx",
     email: "poirier.oli@gmail.com",
     phone: "+1 438 870-0489",
     linkedin: "https://linkedin.com/in/olivier-poirier-66a3782bb",

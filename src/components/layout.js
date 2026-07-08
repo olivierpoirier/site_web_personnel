@@ -144,21 +144,32 @@ export function siteHeader(person) {
 }
 
 export function quickContact(person) {
+  const cvHref = safeUrl(person.cv);
+
   return `
     <aside class="quick-contact" aria-label="Contacts rapides">
       <a href="${attr(mailto(person.email))}" title="Écrire un courriel" aria-label="Écrire un courriel">${icon("mail")}</a>
       <a href="${attr(tel(person.phone))}" title="Téléphoner" aria-label="Téléphoner">${icon("phone")}</a>
       <a href="${attr(safeUrl(person.linkedin))}" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noreferrer">${icon("linkedin")}</a>
       <a href="${attr(safeUrl(person.website))}" title="GitHub" aria-label="GitHub" target="_blank" rel="noreferrer">${icon("github")}</a>
+      <a href="${attr(cvHref)}" title="Télécharger le CV" aria-label="Télécharger le CV" download="Olivier_Poirier_CV.docx">${icon("download")}</a>
     </aside>
   `;
 }
 
 export function siteFooter(person) {
+  const cvHref = safeUrl(person.cv);
+
   return `
     <footer class="footer">
-      <span>${escapeHtml(person.name)}</span>
-      <span>&copy; <span data-year>${new Date().getFullYear()}</span></span>
+      <div class="footer-meta">
+        <span>${escapeHtml(person.name)}</span>
+        <span>&copy; <span data-year>${new Date().getFullYear()}</span></span>
+      </div>
+      <a class="btn ghost footer-cv" href="${attr(cvHref)}" download="Olivier_Poirier_CV.docx">
+        ${icon("download")}
+        <span>Télécharger le CV</span>
+      </a>
     </footer>
   `;
 }

@@ -1572,12 +1572,27 @@ h3 {
 .footer {
   width: min(100%, var(--shell-max));
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 20px;
   margin-inline: auto;
   padding: 28px var(--page-pad);
   color: var(--muted);
   border-top: 1px solid var(--line);
+}
+
+.footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.footer-cv {
+  min-height: 46px;
+  padding-inline: 18px;
+  color: var(--text);
+  flex: 0 0 auto;
 }
 
 @media (min-width: 1700px) {
@@ -1952,7 +1967,13 @@ h3 {
   }
 
   .footer {
+    flex-direction: column;
+    align-items: stretch;
     padding-bottom: 28px;
+  }
+
+  .footer-meta {
+    justify-content: space-between;
   }
 
   .skills-grid,
