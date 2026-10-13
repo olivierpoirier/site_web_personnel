@@ -4,3 +4,18 @@ dist/
 .npm-cache/
 .codex
 .agents
+
+# Local environment variables (keep the shared template)
+.env
+.env.*
+!.env.example
+
+# Logs and local deployment state
+*.log
+.vercel/
+.netlify/
+
+# Operating system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini

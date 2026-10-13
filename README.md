@@ -31,9 +31,13 @@ src/
   features/     Interactions, animations et thème
   styles/       CSS global
   utils/        Helpers HTML, liens et URLs
-assets/         Images sources importées par Vite
+design/         Sources des visuels de Michel et prompts de création
 public/media/   Médias publics des projets
 ```
+
+Les sources PNG du logo de Michel et le SVG de l'aperçu de partage sont conservés dans
+`design/brand/`. Le site utilise les variantes optimisées de `public/media/brand/`,
+et les balises Open Graph et Twitter référencent `michel-social-preview.png`.
 
 ## Modifier le contenu
 
