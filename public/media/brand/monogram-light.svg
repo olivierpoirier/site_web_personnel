@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+  <title>Monogramme OP — Olivier Poirier</title>
+  <defs>
+    <linearGradient id="surface" x1="20" y1="18" x2="236" y2="248" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF9FC" />
+      <stop offset="1" stop-color="#F2E8F6" />
+    </linearGradient>
+    <linearGradient id="signature" x1="55" y1="83" x2="201" y2="175" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9B4066" />
+      <stop offset="1" stop-color="#735DA8" />
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="254" height="254" rx="67" fill="url(#surface)" />
+  <rect x="1.5" y="1.5" width="253" height="253" rx="66.5" stroke="#9B4066" stroke-opacity=".14" />
+  <g stroke="url(#signature)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M142 84H102C75 84 58 101 58 128C58 156 75 173 102 173C129 173 142 156 142 128V84Z" />
+    <path d="M142 173V84H164C187 84 199 96 199 117C199 138 186 150 164 150H142" />
+  </g>
+  <circle cx="195" cy="178" r="5" fill="#735DA8" />
+</svg>

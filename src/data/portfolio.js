@@ -1,12 +1,12 @@
-import avatarUrl from "../../assets/OlivierLogo.png";
-
 export const portfolioData = {
   person: {
     name: "Olivier Poirier",
     initials: "OP",
     role: "Développeur Web & Applicatif Full-Stack",
     availability: "Disponible pour projets web, applications full-stack et automatisations",
-    avatar: avatarUrl,
+    avatar: "/media/brand/michel-dev-hero-dark.webp",
+    avatarLight: "/media/brand/michel-dev-hero-light.webp",
+    avatarAlt: "Michel, mascotte de développeur d'Olivier Poirier",
     cv: "/cv/Olivier_Poirier_CV.docx",
     email: "poirier.oli@gmail.com",
     phone: "+1 438 870-0489",
@@ -120,6 +120,39 @@ export const portfolioData = {
   ],
 
   projects: [
+    {
+      title: "SoundMaker",
+      eyebrow: "Application Windows · publiée sur itch.io",
+      date: "2026",
+      featured: true,
+      description: "Application gratuite pour Windows qui déclenche des sons, images, GIFs et fausses alertes à intervalles configurables. Import de médias personnels, mode Chaos, thèmes personnalisables et interface bilingue français/anglais.",
+      url: "https://syncos.itch.io/soundmaker",
+      links: {
+        live: "https://syncos.itch.io/soundmaker",
+        liveLabel: "Télécharger sur itch.io",
+        github: "https://github.com/olivierpoirier/periodic-sound-player"
+      },
+      repoBadges: ["Publié sur itch.io", "Windows", "Gratuit", "Python", "PySide6", "FR / EN"],
+      media: {
+        type: "image",
+        src: "/media/projects/soundmaker-tour.gif",
+        alt: "Tour animé de l'application SoundMaker"
+      },
+      gallery: [
+        {
+          type: "image",
+          src: "/media/projects/soundmaker-main-fr.png",
+          alt: "Interface principale de SoundMaker"
+        },
+        {
+          type: "image",
+          src: "/media/projects/soundmaker-help-fr.png",
+          alt: "Guide d'aide de SoundMaker"
+        }
+      ],
+      highlights: ["Sons choisis ou aléatoires", "Images, GIFs et fausses alertes", "Minuterie configurable, pause et aperçu", "Médias et préférences conservés aux mises à jour"],
+      tags: ["Python", "PySide6", "Pygame", "Audio", "Application Windows", "Bilingue"]
+    },
     {
       title: "Royal LePage Tendance",
       eyebrow: "Portail immobilier",
@@ -257,37 +290,6 @@ export const portfolioData = {
 
   privateProjects: [
     {
-      title: "SoundMaker",
-      eyebrow: "Application desktop",
-      date: "Projet personnel",
-      featured: true,
-      description: "Console desktop Python/Qt pour programmer des sons, pop-ups meme, fausses alertes et modes Chaos dans une interface propre, thémable, bilingue et documentée.",
-      url: "https://github.com/olivierpoirier/periodic-sound-player",
-      links: {
-        github: "https://github.com/olivierpoirier/periodic-sound-player"
-      },
-      repoBadges: ["GitHub public", "Python", "PySide6", "Pygame audio", "FR / EN", "Mis à jour: juillet 2026"],
-      media: {
-        type: "image",
-        src: "/media/projects/soundmaker-tour.gif",
-        alt: "Tour animé de l'application SoundMaker"
-      },
-      gallery: [
-        {
-          type: "image",
-          src: "/media/projects/soundmaker-main-fr.png",
-          alt: "Interface principale de SoundMaker"
-        },
-        {
-          type: "image",
-          src: "/media/projects/soundmaker-help-fr.png",
-          alt: "Guide d'aide de SoundMaker"
-        }
-      ],
-      highlights: ["Timer visible avec recalcul manuel", "Modes sons, memes, alertes et Chaos", "Bibliothèque Images/Sounds locale", "Guide intégré et mises à jour GitHub"],
-      tags: ["Python", "PySide6", "Application desktop", "Sons système", "Pop-up", "GitHub"]
-    },
-    {
       title: "Architecture produit - Troc local",
       eyebrow: "Concept produit",
       date: "Concept produit",
@@ -319,7 +321,7 @@ export const portfolioData = {
 
   videos: {
     title: "Démos et médias de projets",
-    description: "Les projets non hébergés et les interfaces plus difficiles à expliquer en texte sont présentés avec GIFs, captures et walkthroughs courts.",
+    description: "Les interfaces et prototypes sont présentés avec des GIFs, des captures et de courtes démonstrations.",
     playlistId: "",
     fallbackVideoId: ""
   },

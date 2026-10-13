@@ -127,7 +127,7 @@ export function linkButtons(project) {
   const hasRepositoryLinks = Boolean(links.github || links.extra?.length);
   const liveUrl = hasExplicitLive || !hasRepositoryLinks ? links.live || project.url : undefined;
   const buttons = [
-    { label: "Voir le site", url: liveUrl, variant: "primary" },
+    { label: links.liveLabel || "Voir le site", url: liveUrl, variant: "primary" },
     { label: "GitHub", url: links.github, variant: "ghost" },
     { label: "Démo", url: links.demo, variant: "ghost" },
     ...(links.extra || [])

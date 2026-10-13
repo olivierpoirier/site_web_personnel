@@ -147,7 +147,7 @@ function initTheme() {
     if (favicon) {
       favicon.setAttribute(
         "href",
-        isLight ? "/media/brand/favicon-sakura-32.png" : "/media/brand/favicon-retrowave-32.png"
+        isLight ? "/media/brand/michel-favicon-light-32.png" : "/media/brand/michel-favicon-dark-32.png"
       );
     }
 

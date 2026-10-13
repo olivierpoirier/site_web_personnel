@@ -4,8 +4,8 @@ import { mailto, tel } from "../utils/links.js";
 
 const navigation = [
   { href: "#bio", label: "Bio" },
-  { href: "#projets", label: "Projets hébergés" },
-  { href: "#captures", label: "Projets non hostés" },
+  { href: "#projets", label: "Projets publiés" },
+  { href: "#captures", label: "Concepts & prototypes" },
   { href: "#competences", label: "Compétences" },
   { href: "#contact", label: "Contact" }
 ];
@@ -114,8 +114,8 @@ export function siteHeader(person) {
     <header class="site-header" data-glass>
       <a class="brand" href="#accueil" aria-label="Retour à l'accueil">
         <span class="brand-mark" aria-hidden="true">
-          <img class="brand-icon brand-icon-dark" src="/media/brand/developer-icon-retrowave.png" alt="" />
-          <img class="brand-icon brand-icon-light" src="/media/brand/developer-icon-sakura.png" alt="" />
+          <img class="brand-icon brand-icon-dark" src="/media/brand/michel-dev-mark-dark.webp" alt="" width="52" height="52" />
+          <img class="brand-icon brand-icon-light" src="/media/brand/michel-dev-mark-light.webp" alt="" width="52" height="52" />
         </span>
         <span class="brand-text">
           <strong>${escapeHtml(person.name)}</strong>

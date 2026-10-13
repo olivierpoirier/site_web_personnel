@@ -38,17 +38,9 @@ export function heroSection(data) {
       </div>
 
       <div class="hero-visual reveal">
-        <div class="portrait-card profile-tilt">
-          <div class="portrait-ring"></div>
-          <img src="${attr(data.person.avatar)}" alt="Logo ou portrait de ${attr(data.person.name)}" />
-
-          <div class="code-bubble bubble-one">
-            <span class="mono">npm run build</span>
-          </div>
-
-          <div class="code-bubble bubble-two">
-            <span class="mono">&lt;client + server /&gt;</span>
-          </div>
+        <div class="hero-logo-stage profile-tilt">
+          <img class="hero-logo hero-logo-dark" src="${attr(data.person.avatar)}" alt="${attr(data.person.avatarAlt)}" width="640" height="640" />
+          <img class="hero-logo hero-logo-light" src="${attr(data.person.avatarLight)}" alt="" aria-hidden="true" width="640" height="640" />
         </div>
       </div>
 
@@ -87,9 +79,9 @@ export function projectsSection(projects) {
   return `
     <section id="projets" class="section">
       ${sectionHeader(
-        "02 / Web",
-        "Projets hébergés",
-        "Applications, plateformes et projets accessibles en ligne, développés avec une approche full-stack, produit et déploiement."
+        "02 / Réalisations",
+        "Projets publiés",
+        "Applications desktop, plateformes web et projets accessibles en ligne, développés avec une approche full-stack, produit et déploiement."
       )}
 
       <div class="featured-projects">
@@ -116,8 +108,8 @@ export function capturesSection(data) {
     <section id="captures" class="section">
       ${sectionHeader(
         "03 / Prototypes",
-        "Projets non hostés",
-        "Projets privés, concepts applicatifs, architectures produit ou prototypes qui ne sont pas toujours disponibles publiquement."
+        "Concepts & prototypes",
+        "Architectures produit et prototypes présentés à travers des démonstrations : logique métier, automatisation et parcours utilisateur."
       )}
 
       ${videoLinks.isAvailable ? `
@@ -140,17 +132,21 @@ export function capturesSection(data) {
         </div>
       ` : ""}
 
-      <div class="featured-projects private-featured-projects">
-        ${featuredPrivateProjects.map(featuredProjectCard).join("")}
-      </div>
+      ${featuredPrivateProjects.length ? `
+        <div class="featured-projects private-featured-projects">
+          ${featuredPrivateProjects.map(featuredProjectCard).join("")}
+        </div>
+      ` : ""}
 
+      ${featuredPrivateProjects.length || videoLinks.isAvailable ? `
       <div class="section-head private-projects-head reveal">
         <p class="section-kicker">03B / Concepts</p>
         <h2>Autres projets & architectures</h2>
         <p>
-          SoundMaker, Troc local, StarBoost et autres projets démontrant la logique produit, l'automatisation et la structure technique.
+          Troc local, StarBoost et autres projets démontrant la logique produit, l'automatisation et la structure technique.
         </p>
       </div>
+      ` : ""}
 
       <div class="project-grid private-project-grid">
         ${standardPrivateProjects.map(projectCard).join("")}
